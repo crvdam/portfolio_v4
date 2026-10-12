@@ -221,16 +221,6 @@ a:focus-visible {
     line-height: 1.2;
 }
 
-.section.about {
-    p:last-of-type {
-        margin-bottom: 0;
-    }
-
-    p {
-        margin-left: 2rem;
-    }
-}
-
 /* ---------- Short desktop screens ---------- */
 
 @media (min-width: 60.0625rem) and (max-height: 48rem) {
@@ -330,15 +320,24 @@ a:focus-visible {
     }
 
     .background,
-    .header--light {
+    .header.header--light {
         display: none;
     }
 
     .header {
+        --cut: clamp(3rem, 15vw, 6rem);
+
         position: static;
-        padding: 2rem var(--gutter) 0;
-        color: var(--cream);
+        min-height: 100vh;
+        min-height: 100svh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: var(--gutter) var(--gutter) calc(var(--gutter) + var(--cut));
+        background: var(--cream);
+        color: var(--green);
         pointer-events: auto;
+        clip-path: polygon(0 0, 100% 0, 100% calc(100% - var(--cut)), 0 100%);
     }
 
     .header > * {
@@ -347,6 +346,7 @@ a:focus-visible {
 
     .header__intro {
         margin: 1.5rem 0 0;
+        font-size: 1.125rem;
     }
 
     .menu-toggle {
@@ -431,6 +431,7 @@ a:focus-visible {
         margin: 0;
         padding: 0 var(--gutter) var(--section-gap);
     }
+
 
     .section {
         min-height: auto;
